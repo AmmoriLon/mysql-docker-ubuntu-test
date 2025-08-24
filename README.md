@@ -2,13 +2,6 @@
 
 Решения для тестового задания, демонстрирующие навыки работы с MySQL, Docker и Ubuntu.
 
-## Структура проекта
-test-assignment/
-├── delete_query.sql # SQL запрос на удаление данных
-├── docker-compose.yml # Docker Compose конфигурация
-├── ubuntu_search_commands.md # Команды поиска в Ubuntu
-└── README.md # Данный файл
-
 text
 
 ## 1. MySQL запрос
