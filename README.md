@@ -26,6 +26,14 @@
 - `./docker-compose.yml`
 - `./Dockerfile.backend-01` — файл с описанием сценария сборки контейнера
 
+-  `docker network create project-network` - создаем сеть project-network, что-бы можно было в данную сеть добавлять сервисы из других "compose" сценариев
+-  изменяем владельца или разрешения на папку для первого запуска в mariadb, в отличие от mysql, не нужно т.к. стартует база от root
+-  `chmod 777 ./db_data` разрешение на запись всем 
+-  `chown 33:33 ./db_data` или смена владельца на id пользователя mysql
+-  `docker compose up -d` запуск проекта в фоновом режиме
+- `docker logs {container_name}` просмотр логов контейнеров
+
+
 Решение:
 Файл: `docker-compose.yml`
 
