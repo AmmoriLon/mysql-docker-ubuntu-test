@@ -16,11 +16,11 @@
 Подготовить docker-compose.yml для запуска нескольких сервисов: nginx, php, mariadb, backend1.
 
 Решение:
-Файл: docker-compose.yml
+Файл: `docker-compose.yml`
 
 ## 3. Команды поиска в Ubuntu
 Задача:
 Предоставить команды для поиска по содержимому файлов в Ubuntu.
 
 Решение:
-Файл: ubuntu_search_commands.md
+Файл: `ubuntu_search_commands.md`
