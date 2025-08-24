@@ -11,14 +11,6 @@
 ### Решение
 Файл: `delete_query.sql`
 
-
-Особенности
-Использует многотабличный DELETE с JOIN
-
-Точечное удаление по конкретному indicator_id и дате
-
-Оптимизирован для SQL Server
-
 ## 2. Docker Compose конфигурация
 Задача:
 Подготовить docker-compose.yml для запуска нескольких сервисов: nginx, php, mariadb, backend1.
