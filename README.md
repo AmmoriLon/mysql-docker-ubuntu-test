@@ -15,15 +15,16 @@
 Задача:
 Подготовить docker-compose.yml для запуска нескольких сервисов: nginx, php, mariadb, backend1.
 ### Структура проекта:
-./.env  # переменные для запуска docker compose (MYSQL_ROOT_PASSWORD, MYSQL_DATABASE...)
-./.gitignore
-./.dockerignore # список игнорируемых файлов при сборке контейнера
-./db_data/  # директория базы данных - перед запуском сменить пользователя на mysql
-./app-php-01/  # директория с кодом php
-./backend-01/ # директория с кодом backend
-./config/ # директория с конфигурационными файлами контейнеров
-./docker-compose.yml
-./Dockerfile.backend-01 # файл с описанием сценария сборки контейнера
+
+- `./.env` — переменные для запуска docker compose (`MYSQL_ROOT_PASSWORD`, `MYSQL_DATABASE`...)
+- `./.gitignore`
+- `./.dockerignore` — список игнорируемых файлов при сборке контейнера
+- `./db_data/` — директория базы данных — перед запуском сменить пользователя на `mysql`
+- `./app-php-01/` — директория с кодом php
+- `./backend-01/` — директория с кодом backend
+- `./config/` — директория с конфигурационными файлами контейнеров
+- `./docker-compose.yml`
+- `./Dockerfile.backend-01` — файл с описанием сценария сборки контейнера
 
 Решение:
 Файл: `docker-compose.yml`
