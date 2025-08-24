@@ -28,71 +28,15 @@ text
 Оптимизирован для SQL Server
 
 ## 2. Docker Compose конфигурация
-Задача
+Задача:
 Подготовить docker-compose.yml для запуска нескольких сервисов: nginx, php, mariadb, backend1.
 
-Решение
+Решение:
 Файл: docker-compose.yml
 
-yaml
-version: '3.8'
-services:
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - php
-
-  php:
-    image: php:8.2-fpm
-    volumes:
-      - ./app:/var/www/html
-
-  mariadb:
-    image: mariadb:10.6
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: app_db
-
-  backend1:
-    build: ./backend
-    ports:
-      - "8000:8000"
 ## 3. Команды поиска в Ubuntu
-Задача
+Задача:
 Предоставить команды для поиска по содержимому файлов в Ubuntu.
 
-Решение
+Решение:
 Файл: ubuntu_search_commands.md
-
-Основная команда:
-
-bash
-grep -r "искомый_текст" /путь/к/директории/
-Ключевые опции
--r - рекурсивный поиск
-
--i - игнорирование регистра
-
--n - вывод номеров строк
-
--w - поиск целых слов
-
-Как использовать
-MySQL запрос
-sql
--- Выполнить в SQL Server Management Studio
-Docker Compose
-bash
-# Запуск всех сервисов
-docker-compose up -d
-
-# Остановка сервисов  
-docker-compose down
-Поиск в Ubuntu
-bash
-# Пример использования
-grep -r "database" /var/www/
