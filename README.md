@@ -23,7 +23,7 @@ text
 DELETE f FROM indicator_to_mo_fact f
 JOIN indicator_to_mo im ON f.indicator_to_mo_id = im.indicator_to_mo_id
 JOIN indicator i ON im.indicator_id = i.indicator_id
-WHERE i.indicator_id = 273 AND CAST(f.fact_time AS DATE) = '2024-09-10';
+WHERE i.indicator_id = 273 AND CAST(f.fact_time AS DATE) = '2024-09-10';```
 Особенности
 Использует многотабличный DELETE с JOIN
 
