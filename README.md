@@ -14,7 +14,7 @@
 ## 2. Docker Compose конфигурация
 Задача:
 Подготовить docker-compose.yml для запуска нескольких сервисов: nginx, php, mariadb, backend1.
-# Структура проекта:
+### Структура проекта:
 ./.env  # переменные для запуска docker compose (MYSQL_ROOT_PASSWORD, MYSQL_DATABASE...)
 ./.gitignore
 ./.dockerignore # список игнорируемых файлов при сборке контейнера
