@@ -1,37 +1,36 @@
-version: '3.8'
-
 services:
-  # MariaDB 
+  # MariaDB
   mariadb:
     image: mariadb:10.6
-    container_name: db
+    container_name: mariadb
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: app_db
-      MYSQL_USER: app_user
-      MYSQL_PASSWORD: userpassword
-    ports:
-      - "3306:3306"
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+    expose:
+      - 3306
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db_data:/var/lib/mysql
     networks:
-      - app-network
+      - project-network
 
-  # PHP-FPM 
-  php:
-    image: php:8.2-fpm
-    container_name: php
+  # PHP-FPM
+  php-01:
+    image: php:8.3-fpm
+    container_name: php-01
     restart: unless-stopped
+    expose:
+      - 8000
     volumes:
-      - ./backend1:/var/www/html
-      - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./app-php-01:/srv/app
+      - ./config/php-01/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro
+    working_dir: "/srv/app"
     networks:
-      - app-network
-    depends_on:
-      - mariadb
+      - project-network
 
-  # nginx 
+  # nginx
   nginx:
     image: nginx:1.25
     container_name: nginx
@@ -40,36 +39,34 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./backend1:/var/www/html
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/logs:/var/log/nginx
+      - ./app-php-01:/srv/app-php-01:ro
+      - ./backend-01:/srv/app-backend-01:ro
+      - ./config/nginx/conf.d:/etc/nginx/conf.d:ro
     networks:
-      - app-network
-    depends_on:
-      - php
+      - project-network
 
-  # backend1 
-  backend1:
-    build: ./backend1
-    container_name: backend1
+  # backend-01
+  backend-01:
+    build:
+      context: ./
+      dockerfile: Dockerfile.backend-01
+    container_name: backend-01
     restart: unless-stopped
-    ports:
-      - "8000:8000"
+    env_file:
+      # default environment variables
+      - path: ./backend-01/.env
+        required: true
+      # local environment variables (override defaults when needed)
+      - path: ./backend-01/.env.local
+        required: false
+    expose:
+      - 9000
     volumes:
-      - ./backend1:/app
-    environment:
-      - DB_HOST=mariadb
-      - DB_NAME=app_db
-      - DB_USER=app_user
-      - DB_PASS=userpassword
+      - ./backend-01:/srv/app
+    working_dir: "/srv/app"
     networks:
-      - app-network
-    depends_on:
-      - mariadb
-
-volumes:
-  db_data:
+      - project-network
 
 networks:
-  app-network:
-    driver: bridge
+  project-network:
+    external: true
